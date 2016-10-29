@@ -15,7 +15,9 @@ public class BeatGenerator : MonoBehaviour {
 	void Update () {
 		TimeElapsed += Time.deltaTime;
 		if (TimeElapsed > BeatTime) {
-			SpawnBeat ();
+			if (Random.Range (0, 10) > 7) {
+				SpawnBeat ();
+			}
 			TimeElapsed -= BeatTime;
 		}
 	}
