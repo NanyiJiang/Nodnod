@@ -15,7 +15,7 @@ public class InnerSphere : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Beat") {
-			other.gameObject.GetComponent<Beat> ().Timeout ();
+			other.gameObject.GetComponent<BeatBall> ().Timeout ();
 		}
 	}
 }

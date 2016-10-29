@@ -24,8 +24,8 @@ GameObject:
   - 23: {fileID: 23000010533523798}
   - 114: {fileID: 114000013169180308}
   - 54: {fileID: 54000010292345268}
-  m_Layer: 0
-  m_Name: Beat
+  m_Layer: 8
+  m_Name: BeatBall
   m_TagString: Beat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010020331902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.26, y: 0.57, z: -4.62}
+  m_LocalPosition: {x: 4.45, y: 0.6, z: -2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7066a8b6af2b246b9814a0cf9ade3c18, type: 2}
+  - {fileID: 2100000, guid: c389359b1d308416ab1dde15fbbdccf5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -108,6 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosionRegular: {fileID: 100000, guid: 876cb26c7c6ab42e49a9cace28b90b8b, type: 2}
   ExplosionTimeout: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 2}
+  TargetTime: 0
+  crosshair: {fileID: 0}
+  markedForDestroy: 0
 --- !u!135 &135000010874988114
 SphereCollider:
   m_ObjectHideFlags: 1
