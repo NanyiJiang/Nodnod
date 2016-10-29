@@ -12,9 +12,11 @@ public class AudioVisualizer : MonoBehaviour
     //A float array that stores the audio samples
     public int AudioSamplesSize = 64;
 
-    public int CubeMovementFactor = 50;
+    public float CubeMovementFactor = 1;
 
     public int NoiseFliter = 2;
+
+    public int CubeSpacing = 1;
 
     //A reference to the cube prefab
     public GameObject CubeRef;
@@ -50,13 +52,13 @@ public class AudioVisualizer : MonoBehaviour
         //The cubesTransform array should be initialized with the same length as the samples array  
         this._cubeTransforms = new Transform[this._audioSamples.Length*2-1];
 
-        this._goTransform.position = new Vector3(this._goTransform.position.x - AudioSamplesSize, this._goTransform.position.y, this._goTransform.position.z);
+        this._goTransform.position = new Vector3(this._goTransform.position.x - AudioSamplesSize * CubeSpacing, this._goTransform.position.y, this._goTransform.position.z);
 
         //For each cubeTransforms mirrored
         for (var i = 0; i < this._cubeTransforms.Length; ++i)
         {
             //Create a temporary GameObject, that will serve as a reference to the most recent cloned cube and instantiate a cube placing it at the right side of the previous one
-            GameObject tempCube = (GameObject)Instantiate(this.CubeRef, new Vector3(this._goTransform.position.x + i, _goTransform.position.y, _goTransform.position.z), Quaternion.identity);
+            GameObject tempCube = (GameObject)Instantiate(this.CubeRef, new Vector3(this._goTransform.position.x + i * CubeSpacing, _goTransform.position.y, _goTransform.position.z), Quaternion.identity);
             //Get the recently instantiated cube transform component
             this._cubeTransforms[i] = tempCube.GetComponent<Transform>();
             //Make the cube a child of the game object
@@ -76,7 +78,7 @@ public class AudioVisualizer : MonoBehaviour
 
         Vector3 cubePos = new Vector3();
 
-        cubePos.Set(this._cubeTransforms[midPoint].position.x, Mathf.Clamp(this._audioSamples[0] * (CubeMovementFactor), 0, 50), this._cubeTransforms[midPoint].position.z);
+        cubePos.Set(this._cubeTransforms[midPoint].position.x, Mathf.Clamp(this._audioSamples[0] * (50), 0, 50) * CubeMovementFactor, this._cubeTransforms[midPoint].position.z);
 
         //If the new cubePos.y is greater than the current cube position  
         if (cubePos.y >= this._cubeTransforms[midPoint].position.y)
@@ -95,7 +97,7 @@ public class AudioVisualizer : MonoBehaviour
         {
             /*Set the cubePos Vector3 to the same value as the position of the corresponding 
              * cube. However, set it's Y element according to the current sample.*/
-            cubePos.Set(this._cubeTransforms[midPoint+i].position.x, Mathf.Clamp(this._audioSamples[i] * (CubeMovementFactor + i * i), 0, 50), this._cubeTransforms[midPoint+i].position.z);
+            cubePos.Set(this._cubeTransforms[midPoint+i].position.x, Mathf.Clamp(this._audioSamples[i] * (50 + i * i), 0, 50) * CubeMovementFactor, this._cubeTransforms[midPoint+i].position.z);
             //If the new cubePos.y is greater than the current cube position  
             if (cubePos.y >= this._cubeTransforms[midPoint+i].position.y)
             {
@@ -113,7 +115,7 @@ public class AudioVisualizer : MonoBehaviour
                 this._cubeTransforms[midPoint + i].position -= this.GravityFactor;
             }
 
-            cubePos.Set(this._cubeTransforms[midPoint - i].position.x, Mathf.Clamp(this._audioSamples[i] * (CubeMovementFactor + i * i), 0, 50), this._cubeTransforms[midPoint - i].position.z);
+            cubePos.Set(this._cubeTransforms[midPoint - i].position.x, Mathf.Clamp(this._audioSamples[i] * (50 + i * i), 0, 50) * CubeMovementFactor, this._cubeTransforms[midPoint - i].position.z);
             //If the new cubePos.y is greater than the current cube position  
             if (cubePos.y >= this._cubeTransforms[midPoint - i].position.y)
             {
