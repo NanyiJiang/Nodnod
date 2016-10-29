@@ -233,6 +233,7 @@ MonoBehaviour:
   Beat: {fileID: 1000014105440490, guid: 16f9d4fa517104ca28e811cb0ca7db1f, type: 2}
   TimeElapsed: 0
   BeatTime: 1
+  speed: 2
   Target: {fileID: 2125371726}
 --- !u!1 &74458952
 GameObject:
@@ -282,6 +283,7 @@ GameObject:
   - 124: {fileID: 132267280}
   - 45: {fileID: 132267283}
   - 114: {fileID: 132267284}
+  - 114: {fileID: 132267285}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -380,6 +382,23 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &132267285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 132267278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: 0.25
+  intensity: 0.75
+  blurSize: 1
+  blurIterations: 1
+  blurType: 0
+  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
 --- !u!1001 &932020934
 Prefab:
   m_ObjectHideFlags: 0
@@ -419,6 +438,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 82000011772029208, guid: c09b730b221624b7f8778833f5baab34,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e1acc3a31ceb5c74fb4e0e353cba23c2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c09b730b221624b7f8778833f5baab34, type: 2}
   m_IsPrefabParent: 0
@@ -468,6 +492,7 @@ MonoBehaviour:
   Beat: {fileID: 1000014105440490, guid: 16f9d4fa517104ca28e811cb0ca7db1f, type: 2}
   TimeElapsed: 0
   BeatTime: 1
+  speed: 2
   Target: {fileID: 2125371726}
 --- !u!43 &1264031030
 Mesh:
@@ -1003,6 +1028,7 @@ MonoBehaviour:
   Beat: {fileID: 1000014105440490, guid: 16f9d4fa517104ca28e811cb0ca7db1f, type: 2}
   TimeElapsed: 0
   BeatTime: 1
+  speed: 2
   Target: {fileID: 2125371726}
 --- !u!1 &2125371725
 GameObject:
@@ -1308,4 +1334,5 @@ MonoBehaviour:
   Beat: {fileID: 1000014105440490, guid: 16f9d4fa517104ca28e811cb0ca7db1f, type: 2}
   TimeElapsed: 0
   BeatTime: 1
+  speed: 2
   Target: {fileID: 2125371726}
