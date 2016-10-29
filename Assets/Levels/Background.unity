@@ -220,6 +220,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010094562502, guid: deb9bcbcd9c95a74da7f21c5450e997c,
+        type: 2}
+      propertyPath: GravityFactor.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: deb9bcbcd9c95a74da7f21c5450e997c, type: 2}
   m_IsPrefabParent: 0
