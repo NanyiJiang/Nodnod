@@ -14,8 +14,15 @@ public class ShootBeat : MonoBehaviour {
 
 		var crosshairPosition = crosshair.transform.position;
 		RaycastHit rayHit;
-		if (!Physics.Raycast(Camera.main.ScreenPointToRay(crosshairPosition), out rayHit, 100, layerMask))
+		Ray ray = new Ray();
+		ray.origin = transform.position + UnityEngine.VR.InputTracking.GetLocalPosition(UnityEngine.VR.VRNode.CenterEye);
+		Debug.Log ("crosshair:" + ray.origin + "origin:" + ray.origin);
+		ray.direction = (crosshairPosition - ray.origin).normalized;
+		ray.direction = crosshair.transform.forward;
+		Debug.DrawRay (ray.origin, ray.direction, Color.green);
+		if (!Physics.Raycast(ray, out rayHit, 100, layerMask))
 			return;
+		Debug.Log ("shot");
 		rayHit.collider.gameObject.GetComponent<BeatBall> ().SetTargeted (Time.deltaTime);
 	}
 }
