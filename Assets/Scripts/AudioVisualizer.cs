@@ -33,7 +33,7 @@ public class AudioVisualizer : MonoBehaviour
     private Transform[] _cubeTransforms;
 
     //The velocity that the cubes will drop
-    public Vector3 GravityFactor = new Vector3(0.0f,2.0f,0.0f);
+    public Vector3 GravityFactor = new Vector3(0.0f,250.0f,0.0f);
 
     void Awake()
     {
@@ -93,7 +93,7 @@ public class AudioVisualizer : MonoBehaviour
         else
         {
             //The spectrum line is below the cube, make it fall  
-            this._cubeTransforms[midPoint].position -= this.GravityFactor;
+			this._cubeTransforms[midPoint].position -= this.GravityFactor * Time.deltaTime;
         }
 
         //For each sample  

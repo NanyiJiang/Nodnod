@@ -4,16 +4,24 @@ using System.Collections;
 public class BeatBall : MonoBehaviour {
 	public GameObject ExplosionRegular;
 	public GameObject ExplosionTimeout;
-	public float TargetTime = 0.0f;
+	public GameObject Crosshair;
+	public float TargetTime = 10.0f;
+	public float LockonTime = 0.0f;
 	public bool markedForDestroy = false;
+	bool targeted = false;
 
 	// Use this for initialization
 	void Start () {
-	
+		Crosshair.active = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (targeted) {
+			targeted = false;
+		} else {
+			LockonTime = Mathf.Max (LockonTime - Time.deltaTime * 5, 0);
+		}
 	}
 
 	public void MarkForDestroy() {
@@ -39,11 +47,25 @@ public class BeatBall : MonoBehaviour {
 	}
 
 	public void SetTargeted(float deltaTime) {
+		targeted = true;
 		if (markedForDestroy) {
-			GameObject explosion = GameObject.Instantiate (ExplosionRegular);
-			explosion.transform.position = transform.position;
-			Destroy (explosion, 1.0f);
-			Destroy (gameObject);
+			Crosshair.active = true;
+			LockonTime += deltaTime;
+			float progress = LockonTime / TargetTime;
+			Crosshair.transform.localScale = Mathf.Lerp (5f, 0.8f, progress) * Vector3.one;
+			var angle = Crosshair.transform.eulerAngles;
+			angle.z = Mathf.Lerp (50.0f, 0.8f, progress);
+			Color color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp (0.0f, 1.0f, progress));
+			var material = Crosshair.GetComponent<Renderer> ().material;
+			material.color = color;
+
+			Crosshair.transform.eulerAngles = angle;
+			if (LockonTime > TargetTime) {
+				GameObject explosion = GameObject.Instantiate (ExplosionRegular);
+				explosion.transform.position = transform.position;
+				Destroy (explosion, 1.0f);
+				Destroy (gameObject);
+			}
 		}
 	}
 }

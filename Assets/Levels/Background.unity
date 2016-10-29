@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4469248, g: 0.49678648, b: 0.5750846, a: 1}
+  m_IndirectSpecularColor: {r: 0.4469244, g: 0.4967847, b: 0.575083, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -220,6 +220,23 @@ Prefab:
     - target: {fileID: 4000013771676276, guid: deb9bcbcd9c95a74da7f21c5450e997c, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011840727106, guid: deb9bcbcd9c95a74da7f21c5450e997c,
+        type: 2}
+      propertyPath: CubeRef
+      value: 
+      objectReference: {fileID: 1000010610487178, guid: 79c87a93489fa0e468534422be0ba00c,
+        type: 2}
+    - target: {fileID: 114000011840727106, guid: deb9bcbcd9c95a74da7f21c5450e997c,
+        type: 2}
+      propertyPath: SecondaryCubeRef
+      value: 
+      objectReference: {fileID: 1000011621347710, guid: a59cf31d77721fa4fb9ff6d3aec75c71,
+        type: 2}
+    - target: {fileID: 114000011840727106, guid: deb9bcbcd9c95a74da7f21c5450e997c,
+        type: 2}
+      propertyPath: GravityFactor.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: deb9bcbcd9c95a74da7f21c5450e997c, type: 2}
