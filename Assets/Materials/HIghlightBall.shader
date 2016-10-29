@@ -10,11 +10,13 @@ Shader "Unlit/HIghlightBall"
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags {  "Queue"="Transparent" "RenderType"="Transparent" }
 		LOD 100
 
 		Pass
 		{
+			ZTest Always
+			Blend SrcAlpha OneMinusSrcAlpha
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -60,6 +62,8 @@ Shader "Unlit/HIghlightBall"
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				if (length(i.world_vertex - _WorldPoint) < _Distance) {
 					col += float4(0.6, 0.2, 0.2, 0.0);
+				} else {
+					col = float4(0, 0, 0, 0);
 				}
 				return col;
 			}
