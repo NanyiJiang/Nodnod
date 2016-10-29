@@ -12,11 +12,11 @@ public class AudioVisualizer : MonoBehaviour
     //A float array that stores the audio samples
     public int AudioSamplesSize = 64;
 
-    public float CubeMovementFactor = 1;
+    public float CubeHeightFactor = 15;
 
     public int NoiseFliter = 2;
 
-    public int CubeSpacing = 1;
+    public int CubeSpacing = 10;
 
     //A reference to the cube prefab
     public GameObject CubeRef;
@@ -33,7 +33,7 @@ public class AudioVisualizer : MonoBehaviour
     private Transform[] _cubeTransforms;
 
     //The velocity that the cubes will drop
-    public Vector3 GravityFactor = new Vector3(0.0f,1.0f,0.0f);
+    public Vector3 GravityFactor = new Vector3(0.0f,2.0f,0.0f);
 
     void Awake()
     {
@@ -78,13 +78,17 @@ public class AudioVisualizer : MonoBehaviour
 
         Vector3 cubePos = new Vector3();
 
-        cubePos.Set(this._cubeTransforms[midPoint].position.x, Mathf.Clamp(this._audioSamples[0] * (50), 0, 50) * CubeMovementFactor, this._cubeTransforms[midPoint].position.z);
+        cubePos.Set(this._cubeTransforms[midPoint].position.x, Mathf.Clamp(this._audioSamples[0] * (50), 0, 50) * CubeHeightFactor, this._cubeTransforms[midPoint].position.z);
 
         //If the new cubePos.y is greater than the current cube position  
         if (cubePos.y >= this._cubeTransforms[midPoint].position.y)
         {
             //Set the cube to the new Y position  
             this._cubeTransforms[midPoint].position = cubePos;
+            if (cubePos.y >= NoiseFliter)
+            {
+                CreateSecondaryCube(cubePos);
+            }
         }
         else
         {
@@ -97,7 +101,7 @@ public class AudioVisualizer : MonoBehaviour
         {
             /*Set the cubePos Vector3 to the same value as the position of the corresponding 
              * cube. However, set it's Y element according to the current sample.*/
-            cubePos.Set(this._cubeTransforms[midPoint+i].position.x, Mathf.Clamp(this._audioSamples[i] * (50 + i * i), 0, 50) * CubeMovementFactor, this._cubeTransforms[midPoint+i].position.z);
+            cubePos.Set(this._cubeTransforms[midPoint+i].position.x, Mathf.Clamp(this._audioSamples[i] * (50 + i * i), 0, 50) * CubeHeightFactor, this._cubeTransforms[midPoint+i].position.z);
             //If the new cubePos.y is greater than the current cube position  
             if (cubePos.y >= this._cubeTransforms[midPoint+i].position.y)
             {
@@ -115,7 +119,7 @@ public class AudioVisualizer : MonoBehaviour
                 this._cubeTransforms[midPoint + i].position -= this.GravityFactor;
             }
 
-            cubePos.Set(this._cubeTransforms[midPoint - i].position.x, Mathf.Clamp(this._audioSamples[i] * (50 + i * i), 0, 50) * CubeMovementFactor, this._cubeTransforms[midPoint - i].position.z);
+            cubePos.Set(this._cubeTransforms[midPoint - i].position.x, Mathf.Clamp(this._audioSamples[i] * (50 + i * i), 0, 50) * CubeHeightFactor, this._cubeTransforms[midPoint - i].position.z);
             //If the new cubePos.y is greater than the current cube position  
             if (cubePos.y >= this._cubeTransforms[midPoint - i].position.y)
             {

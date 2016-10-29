@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000013446441248}
+  m_RootGameObject: {fileID: 1000012323860732}
   m_IsPrefabParent: 1
---- !u!1 &1000013446441248
+--- !u!1 &1000012323860732
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000011780816950}
-  - 114: {fileID: 114000010094562502}
-  - 82: {fileID: 82000013035154274}
+  - 4: {fileID: 4000013771676276}
+  - 82: {fileID: 82000011851155132}
+  - 114: {fileID: 114000011840727106}
   m_Layer: 0
   m_Name: AudioVisualization
   m_TagString: Untagged
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000011780816950
+--- !u!4 &4000013771676276
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013446441248}
+  m_GameObject: {fileID: 1000012323860732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.3, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &82000013035154274
+--- !u!82 &82000011851155132
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013446441248}
+  m_GameObject: {fileID: 1000012323860732}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -115,22 +115,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114000010094562502
+--- !u!114 &114000011840727106
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013446441248}
+  m_GameObject: {fileID: 1000012323860732}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0cdebfa151517f468459c9926f3dde4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioSamplesSize: 64
-  CubeMovementFactor: 50
+  CubeHeightFactor: 15
   NoiseFliter: 2
+  CubeSpacing: 10
   CubeRef: {fileID: 1000010610487178, guid: 79c87a93489fa0e468534422be0ba00c, type: 2}
   SecondaryCubeRef: {fileID: 1000011621347710, guid: a59cf31d77721fa4fb9ff6d3aec75c71,
     type: 2}
   DestoryDelay: 10
-  GravityFactor: {x: 0, y: 0.5, z: 0}
+  GravityFactor: {x: 0, y: 2, z: 0}
