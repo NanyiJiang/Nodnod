@@ -59,7 +59,7 @@ Shader "Unlit/HIghlightBall"
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				if (length(i.world_vertex - _WorldPoint) < _Distance) {
-					return float4(1.0, 0.0, 0.0, 1.0);
+					col += float4(0.6, 0.2, 0.2, 0.0);
 				}
 				return col;
 			}

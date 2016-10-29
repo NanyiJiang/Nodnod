@@ -23,7 +23,8 @@ public class BeatGenerator : MonoBehaviour {
 	void SpawnBeat() {
 		GameObject beat = GameObject.Instantiate (Beat);
 		beat.transform.position = transform.position;
+		beat.transform.LookAt (Target.transform);
 		beat.GetComponent<Rigidbody> ().velocity = -(transform.position - Target.position).normalized * 0.5f;
-		beat.GetComponent<Beat>().SetHightlight (4, Target.transform.position);
+		beat.GetComponent<BeatBall>().SetHightlight (4, Target.transform.position);
 	}
 }

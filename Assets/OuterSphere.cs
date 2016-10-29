@@ -15,7 +15,7 @@ public class OuterSphere : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Beat") {
-			other.gameObject.GetComponent<Beat> ().MarkForDestroy ();
+			other.gameObject.GetComponent<BeatBall> ().MarkForDestroy ();
 		}
 	}
 }
