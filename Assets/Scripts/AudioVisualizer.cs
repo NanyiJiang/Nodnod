@@ -33,7 +33,7 @@ public class AudioVisualizer : MonoBehaviour
     private Transform[] _cubeTransforms;
 
     //The velocity that the cubes will drop
-    public Vector3 GravityFactor = new Vector3(0.0f,0.25f,0.0f);
+    public Vector3 GravityFactor = new Vector3(0.0f,1.0f,0.0f);
 
     void Awake()
     {
