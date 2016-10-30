@@ -20,6 +20,8 @@ public class Background : MonoBehaviour
     public Vector3[] Lvl4EffectsLocations;
     private List <FlareSystem> _level4FlareSystem;
 
+    public Vector2 TextureMovementSpeed;
+
     public float partScale = 0.5f;
 
     private class FlareSystem
@@ -51,7 +53,12 @@ public class Background : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        Renderer rend = GetComponent<Renderer>();
+        Vector2 offest = Time.time * TextureMovementSpeed;
+        rend.material.mainTextureOffset = offest;
+
+
         switch (ScoreMultiplyer)
         {
             case 2:
