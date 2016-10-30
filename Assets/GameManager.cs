@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
     public TextMesh scoreText;
     public TextMesh multiplierText;
+    public Background background;
 
     int score;
     int multiplier;
@@ -30,12 +31,13 @@ public class GameManager : MonoBehaviour {
     {
         multiplierText.text = System.String.Format("{0} X", newMultiplier);
         multiplier = newMultiplier;
+        background.SetScoreMultiplyer(multiplier);
     }
 
     public void Hit()
     {
         streak += 1;
-        if (streak > 10)
+        if (streak > 25)
         {
             if (multiplier < 8)
             {

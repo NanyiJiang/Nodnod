@@ -20,6 +20,8 @@ public class Background : MonoBehaviour
     public Vector3[] Lvl4EffectsLocations;
     private List <FlareSystem> _level4FlareSystem;
 
+    public float partScale = 0.5f;
+
     private class FlareSystem
     {
         public GameObject ParticleObject;
@@ -55,10 +57,10 @@ public class Background : MonoBehaviour
             case 2:
                 Level2Effects(true);
                 break;
-            case 3:
+            case 4:
                 Level3Effects(true);
                 break;
-            case 4:
+            case 8:
                 Level4Effects(true);
                 break;
             default:
@@ -83,6 +85,7 @@ public class Background : MonoBehaviour
             thisFlareSystem.ParticleSystems = thisFlareSystem.ParticleObject.GetComponentsInChildren<ParticleSystem>();
             thisFlareSystem.ParticleObject.SetActive(false);
             thisFlareSystem.ParticleObject.transform.parent = this.transform;
+            thisFlareSystem.ParticleObject.transform.localScale = new Vector3(partScale, partScale, partScale);
             thisFlareSystem.IsActive = false;
 
             _level2FlareSystem.Add(thisFlareSystem);
@@ -105,6 +108,7 @@ public class Background : MonoBehaviour
             thisFlareSystem.ParticleSystems = thisFlareSystem.ParticleObject.GetComponentsInChildren<ParticleSystem>();
             thisFlareSystem.ParticleObject.SetActive(false);
             thisFlareSystem.ParticleObject.transform.parent = this.transform;
+            thisFlareSystem.ParticleObject.transform.localScale = new Vector3(partScale, partScale, partScale);
             thisFlareSystem.IsActive = false;
 
             _level3FlareSystem.Add(thisFlareSystem);
@@ -126,6 +130,7 @@ public class Background : MonoBehaviour
             thisFlareSystem.ParticleSystems = thisFlareSystem.ParticleObject.GetComponentsInChildren<ParticleSystem>();
             thisFlareSystem.ParticleObject.SetActive(false);
             thisFlareSystem.ParticleObject.transform.parent = this.transform;
+            thisFlareSystem.ParticleObject.transform.localScale = new Vector3(partScale, partScale, partScale);
             thisFlareSystem.IsActive = false;
 
             _level4FlareSystem.Add(thisFlareSystem);
