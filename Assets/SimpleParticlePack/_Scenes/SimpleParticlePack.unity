@@ -190,5 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystems: []
-  loadFlareSystems: []
+  loadFlareSystems:
+  - {fileID: 0}
+  - {fileID: 0}
   loadDirectionalSystems: []

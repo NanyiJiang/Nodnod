@@ -122,6 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextureScale: 20
   ScoreMultiplyer: 1
+  Lvl4EffectsObj: {fileID: 100000, guid: 46c7347ec6bbf423d9905752824ca1b6, type: 2}
+  Lvl4EffectsLocations:
+  - {x: 0, y: 0, z: 0}
 --- !u!23 &111083844
 MeshRenderer:
   m_ObjectHideFlags: 0

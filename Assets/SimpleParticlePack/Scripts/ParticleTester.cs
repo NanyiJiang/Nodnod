@@ -47,6 +47,8 @@ public class ParticleTester : MonoBehaviour {
 			thisFlareSystem.particleObject.transform.parent = this.transform;
 			flareSystems.Add (thisFlareSystem);
 		}
+
+
 		foreach (Object obj in loadDirectionalSystems) {
 			FlareSystem thisFlareSystem = new FlareSystem ();
 			thisFlareSystem.name = obj.name;
