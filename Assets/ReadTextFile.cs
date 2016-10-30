@@ -28,12 +28,42 @@ public class ReadTextFile : MonoBehaviour {
 	public List<int> measureStarts = new List<int>();
 	public List<int> numLinesInMeasures = new List<int>();
 	public List<int[]> actions = new List<int[]> ();
-	void Start(){
 
-		string text = textFile.text;  //this is the content as string
+    public float portalForward = 6.0f;
+    public float portalShift = 4.0f;
+    public float beatSpeed = 2.0f;
+    public float innerSphereRadius = 2.0f;
+    public float outerSphereRadius = 3.0f;
+
+    public float minimumBeatDT = 0.5f;
+    float lastBeatTime = 0.0f;
+
+    float bufferTime = 0.0f;
+	void Start(){
+        bufferTime = (portalForward - (innerSphereRadius + outerSphereRadius) / 2.0f) / beatSpeed;
+        // Set position of the launchers
+
+        Vector3 forwardV = new Vector3(0, 0, portalForward);
+        Vector3 v1 = forwardV + new Vector3(0, -portalShift, 0);
+        Vector3 v2 = forwardV + new Vector3(0, portalShift, 0);
+        Vector3 v3 = forwardV + new Vector3(portalShift, 0, 0);
+        Vector3 v4 = forwardV + new Vector3(-portalShift, 0, 0);
+
+        v1 = v1.normalized * portalForward;
+        v2 = v2.normalized * portalForward;
+        v3 = v3.normalized * portalForward;
+        v4 = v4.normalized * portalForward;
+
+        leftSphere.transform.position = v1;
+        rightSphere.transform.position = v2;
+        topSphere.transform.position = v3;
+        bottomSphere.transform.position = v4;
+
+        string text = textFile.text;  //this is the content as string
 		//byte[] byteText = textFile.bytes;  //this is the content as byte array
 
 		string[] lines = text.Split("\n" [0]);
+
 		foreach (string line in lines)
 		{
 			if (line.Contains ("#OFFSET:")) {
@@ -50,13 +80,14 @@ public class ReadTextFile : MonoBehaviour {
 				numLinesInMeasures.Add (numLinesInMeasure);
 				numLinesInMeasure = 0;
 			} 
-			else if (line.Length == 5) {
+			else {
+                var newLine = line.Replace('M', '0');
 				numLinesInMeasure++;
 				int[] action = new int[4];
-				action[0] = int.Parse(line[0].ToString());
-				action[1] = int.Parse(line[1].ToString());
-				action[2] = int.Parse(line[2].ToString());
-				action[3] = int.Parse(line[3].ToString());
+				action[0] = int.Parse(newLine[0].ToString());
+				action[1] = int.Parse(newLine[1].ToString());
+				action[2] = int.Parse(newLine[2].ToString());
+				action[3] = int.Parse(newLine[3].ToString());
 				actions.Add(action);
 			}
 		} 
@@ -96,40 +127,32 @@ public class ReadTextFile : MonoBehaviour {
 	void Update () {
 		timeElapsed += Time.deltaTime;
 
-		var material1 = leftSphere.GetComponent<Renderer> ().material;
-		material1.color = Color.white;
-		var material2 = rightSphere.GetComponent<Renderer> ().material;
-		material2.color = Color.white;
-		var material3 = topSphere.GetComponent<Renderer> ().material;
-		material3.color = Color.white;
-		var material4 = bottomSphere.GetComponent<Renderer> ().material;
-		material4.color = Color.white;
-
-		if (currTime < beats.Count) {
-			while (beats [currTime].timestamp < timeElapsed) {
-				currTime++;
+        if (currTime < beats.Count) {
+			while (beats [currTime].timestamp + bufferTime < timeElapsed) {
+                currTime++;
 				isUsed = false;
 				if (currTime >= beats.Count)
 					return;
 			}
-			if (!isUsed) {
+			if (!isUsed && timeElapsed - lastBeatTime > minimumBeatDT) {
 				switch (beats [currTime].direction) {
-				case 0:
-					material1.color = Color.magenta;
-					break;
-				case 1:
-					material2.color = Color.blue;
-					break;
-				case 2:
-					material3.color = Color.red;
-					break;
-				case 3:
-					material4.color = Color.cyan;
-					break;
-				default:
-					break;
-				}
-			}
+				    case 0:
+                        leftSphere.GetComponent<BeatGenerator>().SpawnBeat();
+					    break;
+				    case 1:
+                        rightSphere.GetComponent<BeatGenerator>().SpawnBeat();
+                        break;
+				    case 2:
+                        topSphere.GetComponent<BeatGenerator>().SpawnBeat();
+                        break;
+                    case 3:
+                        bottomSphere.GetComponent<BeatGenerator>().SpawnBeat();
+					    break;
+				    default:
+					    break;
+                }
+                lastBeatTime = timeElapsed;
+            }
 			isUsed = true;
 		}
 	}

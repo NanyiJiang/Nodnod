@@ -243,7 +243,7 @@ MonoBehaviour:
   ExplosionRegular: {fileID: 100000, guid: 876cb26c7c6ab42e49a9cace28b90b8b, type: 2}
   ExplosionTimeout: {fileID: 100002, guid: f7efb0d9df2264096af57128df85dddb, type: 2}
   Crosshair: {fileID: 1000011960702434}
-  TargetTime: 0.2
+  TargetTime: 0.05
   LockonTime: 0
   markedForDestroy: 0
 --- !u!135 &135000010874988114

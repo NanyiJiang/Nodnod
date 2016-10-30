@@ -65,7 +65,10 @@ public class BeatBall : MonoBehaviour {
 				explosion.transform.position = transform.position;
 				Destroy (explosion, 1.0f);
 				Destroy (gameObject);
-			}
+
+                GameManager manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+                manager.Hit();
+            }
 		}
 	}
 }

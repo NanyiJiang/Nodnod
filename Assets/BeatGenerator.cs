@@ -14,16 +14,10 @@ public class BeatGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		TimeElapsed += Time.deltaTime;
-		if (TimeElapsed > BeatTime) {
-			if (Random.Range (0, 10) > 7) {
-				SpawnBeat ();
-			}
-			TimeElapsed -= BeatTime;
-		}
+		
 	}
 
-	void SpawnBeat() {
+	public void SpawnBeat() {
 		GameObject beat = GameObject.Instantiate (Beat);
 		beat.transform.position = transform.position;
 		beat.transform.LookAt (Target.transform);

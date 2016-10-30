@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Beat
+  - GameManager
   layers:
   - Default
   - TransparentFX
