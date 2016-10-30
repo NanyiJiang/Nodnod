@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         UpdateScore(0);
-        UpdateMultiplier(1);
+        multiplier = 1;
+        //UpdateMultiplier(1);
     }
 	
 	// Update is called once per frame
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour {
     {
         multiplierText.text = System.String.Format("{0} X", newMultiplier);
         multiplier = newMultiplier;
-        // background.SetScoreMultiplyer(multiplier);
+        background.SetScoreMultiplyer(multiplier);
     }
 
     public void Hit()
